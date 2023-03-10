@@ -73,11 +73,8 @@ export default function Seats() {
   }
 
   function confirmSeatRemoval(id) {
-    const { name, cpf } = forms[id];
-    if (name.length > 0 || cpf.length > 0) {
-      return confirm("Deseja remover o assento?");
-    }
-    return true;
+    return confirm("Deseja remover o assento?");
+    
   }
 
   function handleSeatClick(seat) {
