@@ -73,8 +73,11 @@ export default function Seats() {
   }
 
   function confirmSeatRemoval(id) {
-    return confirm("Deseja remover o assento?");
-    
+    if(confirm("Deseja remover o assento?")) {
+      removeForm(id);
+      return true
+    }
+    return false
   }
 
   function handleSeatClick(seat) {
@@ -90,9 +93,10 @@ export default function Seats() {
     if (!confirmSeatRemoval(seat.id)) {
       return;
     }
+    
     const newSeats = selectedSeats.filter((s) => s !== seat);
     setSelectedSeats(newSeats);
-    removeForm(seat.id);
+    
   }
 
   function validateForm() {
