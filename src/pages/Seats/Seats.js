@@ -73,8 +73,8 @@ export default function Seats() {
   }
 
   function confirmSeatRemoval(id) {
+    removeForm(id);
     if(confirm("Deseja remover o assento?")) {
-      removeForm(id);
       return true
     }
     return false
