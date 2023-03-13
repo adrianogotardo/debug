@@ -29,13 +29,11 @@ export default function Movies ({url, setIsHome}){
         <ListContainer>
             {movieList.map ((movie) => {
                 return ( 
-                    <div data-test="movie">
                     <Link to={`/sessoes/${movie.id}`}  key={movie.id}>
                         <MovieContainer>
-                            <img src={movie.posterURL} alt="poster"/>
+                            <img src={movie.posterURL} alt="poster" data-test="movie"/>
                         </MovieContainer>
                     </Link>
-                    </div>
             )})}
         </ListContainer>
     );
