@@ -11,15 +11,15 @@ export default function Menu() {
     const { setTokenStored } = useContext(TokenContext);
     const navigate = useNavigate();
 
-    useEffect(() => {
-        if (localStorage.getItem('userData') !== null) {
-            const localData = JSON.parse(localStorage.getItem('userData'));
-            setUserInfo({ ...userInfo, ...localData });
-            setTokenStored(true);
-        } else {
-            navigate('/');
-        }
-    }, []);
+    //useEffect(() => {
+    //    if (localStorage.getItem('userData') !== null) {
+    //        const localData = JSON.parse(localStorage.getItem('userData'));
+    //        setUserInfo({ ...userInfo, ...localData });
+    //        setTokenStored(true);
+    //    } else {
+    //        navigate('/');
+    //    }
+    //}, []);
     return (
         <MenuStyle data-test="menu">
             <div>
