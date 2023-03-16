@@ -23,6 +23,7 @@ export default function App() {
             <Route path='/cadastro' element={<SignUpPage />} />
             <Route path='/hoje' element={<TodayPage />} />
             <Route path='/habitos' element={<HabitsPage />} />
+            <Route path='/historico' element={<HistoryPage />} />
           </Routes>
           <Menu />
         </BrowserRouter>

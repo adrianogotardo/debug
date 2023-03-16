@@ -14,12 +14,12 @@ export default function LoginPage() {
     const [processing, setProcessing] = useState(false);
     const { userInfo, setUserInfo } = useContext(UserInfoContext);
     const { tokenStored } = useContext(TokenContext);
-    useEffect(() => {
-        setForm({ email: '', password: '' });
-        if(userInfo.token){
-            navigate('/hoje');
-        }
-    }, [tokenStored]);
+    //useEffect(() => {
+    //    setForm({ email: '', password: '' });
+    //    if(userInfo.token){
+    //        navigate('/hoje');
+    //    }
+    //}, [tokenStored]);
     function handleLoginSubmit(e) {
         e.preventDefault();
         setProcessing(true);
