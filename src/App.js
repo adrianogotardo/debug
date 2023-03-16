@@ -1,56 +1,34 @@
-import styled from "styled-components";
-import HomePage from "./pages/HomePage/HomePage";
-import SeatsPage from "./pages/SeatsPage/SeatsPage";
-import SessionsPage from "./pages/SessionsPage/SessionsPage";
-import SuccessPage from "./pages/SuccessPage/SuccessPage";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Menu from "./components/Menu";
+import Header from "./components/Header";
+import HabitsPage from "./pages/HabitsPage/HabitsPage";
+import LoginPage from "./pages/LoginPage/LoginPage";
+import SignUpPage from "./pages/SignUpPage/SignUpPage";
+import TodayPage from "./pages/TodayPage/TodayPage";
+import HistoryPage from "./pages/HistoryPage/HistoryPage";
+import UserInfoContext from "./contexts/UserInfoContext";
 import { useState } from "react";
-import Top from "./components/Top";
+import TokenContext from "./contexts/TokenContext";
 
 export default function App() {
-
-    const url = "https://mock-api.driven.com.br/api/v8/cineflex/";
-    const [seatsList, setSeatsList] = useState(null);
-    const [seatsNumber, setSeatsNumber] = useState([]);
-    const [seatsReserved, setSeatsReserved] = useState([]);
-    const [name, setName] = useState("");
-    const [cpf, setCpf] = useState("");
-    
-    return (
-        <>
-            
-            <BrowserRouter>
-                <Top />
-                <Routes>
-                    <Route path="/" element={<HomePage url={url}/>} />
-                    <Route path="/sessoes/:idFilme" element={<SessionsPage url={url}/>} />
-                    <Route path="/assentos/:idSessao" element={<SeatsPage 
-                    url={url}
-                    seatsList={seatsList}
-                    setSeatsList={setSeatsList}
-                    seatsNumber={seatsNumber}
-                    setSeatsNumber={setSeatsNumber}
-                    name={name}
-                    setName={setName}
-                    cpf={cpf}
-                    setCpf={setCpf}
-                    seatsReserved={seatsReserved}
-                    setSeatsReserved={setSeatsReserved}
-                    />} />
-                    <Route path="/sucesso" element={<SuccessPage
-                    seatsList={seatsList}
-                    seatsNumber={seatsNumber}
-                    setSeatsNumber={setSeatsNumber}
-                    name={name}
-                    setName={setName}
-                    cpf={cpf}
-                    setCpf={setCpf}
-                    seatsReserved={seatsReserved}
-                    setSeatsReserved={setSeatsReserved}
-                    />} />
-                </Routes>
-            </BrowserRouter>
-        </>
-    )
+  const [userInfo, setUserInfo] = useState({ name: '', image: '', token: '', habits: [], todayHabits: [], progress: 0 })
+  const [tokenStored, setTokenStored] = useState(false);
+  return (
+    <UserInfoContext.Provider value={{ userInfo, setUserInfo }}>
+      <TokenContext.Provider value={{ tokenStored, setTokenStored }}>
+        <BrowserRouter>
+          <Header />
+          <Routes>
+            <Route path='/' element={<LoginPage />} />
+            <Route path='/cadastro' element={<SignUpPage />} />
+            <Route path='/hoje' element={<TodayPage />} />
+            <Route path='/habitos' element={<HabitsPage />} />
+            <Route path='/historico' element={<HistoryPage />} />
+          </Routes>
+          <Menu />
+        </BrowserRouter>
+      </TokenContext.Provider>
+    </UserInfoContext.Provider >
+  );
 }
 
